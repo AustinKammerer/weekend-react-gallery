@@ -25,6 +25,20 @@ function App() {
       });
   };
 
+  const updateGalleryItem = (item) => {
+    const id = item.id;
+    axios
+      .put(`gallery/item/${id}`)
+      .then((response) => {
+        console.log("Item update success");
+        getGallery();
+      })
+      .catch((error) => {
+        console.log("Error updating the item", error);
+        alert("Unable to update item!");
+      });
+  };
+
   console.log(itemList);
 
   return (
@@ -34,7 +48,7 @@ function App() {
       </header>
       <p>Gallery goes here</p>
       {/* <img src="images/goat_small.jpg" /> */}
-      <GalleryList itemList={itemList} />
+      <GalleryList itemList={itemList} updateGalleryItem={updateGalleryItem} />
     </div>
   );
 }
