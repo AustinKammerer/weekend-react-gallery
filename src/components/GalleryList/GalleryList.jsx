@@ -1,8 +1,14 @@
-export default function GalleryList({ itemList }) {
+import GalleryItem from "../GalleryItem/GalleryItem.jsx";
+
+export default function GalleryList({ itemList, updateGalleryItem }) {
   return (
     <div>
       {itemList.map((item) => (
-        <img src={item.path} key={item.id} />
+        <GalleryItem
+          key={item.id}
+          updateGalleryItem={updateGalleryItem}
+          item={item}
+        />
       ))}
     </div>
   );
