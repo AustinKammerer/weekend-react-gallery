@@ -7,12 +7,13 @@ import GalleryList from "../GalleryList/GalleryList.jsx";
 function App() {
   // state variables
   const [itemList, setItemList] = useState([]);
-  // GET request function
 
+  // trigger the GET only once on page render
   useEffect(() => {
     getGallery();
   }, []);
 
+  // GET request function
   const getGallery = () => {
     axios
       .get("/gallery")
@@ -25,6 +26,7 @@ function App() {
       });
   };
 
+  // PUT request function to update an item's likes
   const updateGalleryItem = (item) => {
     const id = item.id;
     axios
@@ -39,15 +41,13 @@ function App() {
       });
   };
 
-  console.log(itemList);
-
+  // itemList is passed to GalleryList as a prop so it may be mapped
+  // updateGalleryItem is passed as a prop so it may be then passed to GalleryItem for the 'Like' button click handler
   return (
     <div className="App">
       <header className="App-header">
         <h1 className="App-title">Gallery of My Life</h1>
       </header>
-      <p>Gallery goes here</p>
-      {/* <img src="images/goat_small.jpg" /> */}
       <GalleryList itemList={itemList} updateGalleryItem={updateGalleryItem} />
     </div>
   );

@@ -4,6 +4,7 @@
   border: 1px solid black;
   border-radius: 10px;
   overflow-wrap: break-word;
+  margin: 1rem;
 }
 
 .description {
@@ -11,8 +12,15 @@
 }
 .image {
   display: block;
+  height: 150px;
 }
 
 .likes p {
   margin-bottom: 0.5rem;
+}
+
+.description:hover,
+.image:hover,
+.likeBtn:hover {
+  cursor: pointer;
 }

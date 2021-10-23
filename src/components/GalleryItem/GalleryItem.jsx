@@ -2,39 +2,42 @@ import { useState } from "react";
 import "./GalleryItem.css";
 
 export default function GalleryItem({ item, updateGalleryItem }) {
-  // TODO img click handler to display description instead
-  const [isImgClicked, setIsImgClicked] = useState(false);
+  // variable for displaying image versus description
+  const [imgDisplay, setImgDisplay] = useState(true);
+  // variable for setting the description element's dimension's to those of its image so card size doesnt change
   const [descriptionDims, setDescriptionDims] = useState([]);
 
+  // click handler for image, description, and like button
   const clickHandler = (e) => {
     console.dir(e.target);
-
+    // change functionality based on what was clicked
     switch (e.target.tagName) {
       case "IMG":
-        console.log("image");
-        // document.querySelector(".description").style.width = `${picWidth}px`;
-        let picWidthStr = `${document.querySelector("img").width}px`;
-        let picHeightStr = `${document.querySelector("img").height}px`;
-        console.log(picWidthStr);
+        // grab the image dimensions when clicked
+        let picWidthStr = `${e.target.width}px`;
+        let picHeightStr = `${e.target.height}px`;
+        // set them in a state variable (array)
         setDescriptionDims([picWidthStr, picHeightStr]);
-        setIsImgClicked(!isImgClicked);
+        // flip the truthyness of imgDisplay
+        setImgDisplay(!imgDisplay);
         break;
       case "BUTTON":
-        console.log("button");
+        // run the PUT request function in app to update likes
         updateGalleryItem(item);
         break;
       case "P":
-        console.log("p");
-        setIsImgClicked(!isImgClicked);
+        // flip the truthyness of imgDisplay back to true so the image displays again
+        setImgDisplay(!imgDisplay);
         break;
     }
   };
 
-  // TODO like button click handler to increase likes by 1 (updateGalleryItem)
   return (
     <div className="card">
       <div className="cardMain">
-        {!isImgClicked ? (
+        {/* if imgDisplay is true (default) the image is displayed, 
+        if it is true (when the image is clicked) the description will display instead */}
+        {imgDisplay ? (
           <img className="image " src={item.path} onClick={clickHandler} />
         ) : (
           <p
@@ -51,7 +54,9 @@ export default function GalleryItem({ item, updateGalleryItem }) {
           {item.likes}{" "}
           {item.likes === 1 ? "person likes this" : "people like this"}
         </p>
-        <button onClick={clickHandler}>Like</button>
+        <button className="likeBtn" onClick={clickHandler}>
+          Like
+        </button>
       </div>
     </div>
   );
