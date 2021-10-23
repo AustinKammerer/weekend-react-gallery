@@ -4,7 +4,7 @@ import "./GalleryItem.css";
 export default function GalleryItem({ item, updateGalleryItem }) {
   // variable for displaying image versus description
   const [imgDisplay, setImgDisplay] = useState(true);
-  // variable for setting the description element's dimension's to those of its image so card size doesnt change
+  // variable for setting the description element's dimensions to those of its image so card size doesnt change
   const [descriptionDims, setDescriptionDims] = useState([]);
 
   // click handler for image, description, and like button
