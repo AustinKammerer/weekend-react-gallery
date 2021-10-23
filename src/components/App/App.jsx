@@ -28,7 +28,7 @@ function App() {
   const updateGalleryItem = (item) => {
     const id = item.id;
     axios
-      .put(`gallery/item/${id}`)
+      .put(`gallery/like/${id}`)
       .then((response) => {
         console.log("Item update success");
         getGallery();
