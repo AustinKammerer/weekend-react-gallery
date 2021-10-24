@@ -15,7 +15,7 @@ router.put("/like/:id", (req, res) => {
   // user input id will be sanitized
   pool
     .query(queryText, [id])
-    .then((response) => {
+    .then((result) => {
       res.sendStatus(201);
     })
     .catch((err) => {
@@ -38,5 +38,25 @@ router.get("/", (req, res) => {
       res.sendStatus(500);
     });
 }); // END GET Route
+
+// POST route
+router.post("/", (req, res) => {
+  console.log(`POST request at ${req.baseUrl}${req.url}`);
+  const newItem = req.body;
+  if (newItem.path === "") {
+    res.sendStatus(400);
+  } else if (newItem.path !== "") {
+    const queryText = `INSERT INTO "gallery" ("path", "description") VALUES ($1, $2);`;
+    pool
+      .query(queryText, [newItem.path, newItem.description])
+      .then((result) => {
+        res.sendStatus(201);
+      })
+      .catch((err) => {
+        console.log(`Error making query ${queryText}:`, err);
+        res.sendStatus(500);
+      });
+  }
+});
 
 module.exports = router;

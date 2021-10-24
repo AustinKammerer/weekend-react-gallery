@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function GalleryForm({ addGalleryItem }) {
   // declare variable newItem and a way to set it
   // each input will change its respective property of newItem
-  const [newItem, setNewItem] = useState({ url: "", description: "" });
+  const [newItem, setNewItem] = useState({ path: "", description: "" });
   const handleChange = (e) => {
     console.dir(e.target);
     // unpack the name and value properties from the input that is being changed
@@ -17,15 +17,20 @@ export default function GalleryForm({ addGalleryItem }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addGalleryItem(newItem);
+    if (newItem.path === "") {
+      alert("Please enter a URL");
+    } else {
+      addGalleryItem(newItem);
+      setNewItem({ path: "", description: "" });
+    }
   };
 
   console.log(newItem);
   return (
     <form onSubmit={handleSubmit}>
       <input
-        name="url"
-        value={newItem.url}
+        name="path"
+        value={newItem.path}
         type="text"
         onChange={handleChange}
       />
