@@ -17,12 +17,12 @@ function App() {
   const getGallery = () => {
     axios
       .get("/gallery")
-      .then((response) => {
-        console.log(response.data);
-        setItemList(response.data);
+      .then((res) => {
+        console.log(res.data);
+        setItemList(res.data);
       })
-      .catch((error) => {
-        console.log("Error getting the gallery", error);
+      .catch((err) => {
+        console.log("Error getting the gallery", err);
       });
   };
 
@@ -31,13 +31,27 @@ function App() {
     const id = item.id;
     axios
       .put(`gallery/like/${id}`)
-      .then((response) => {
+      .then((res) => {
         console.log("Item update success");
         getGallery();
       })
-      .catch((error) => {
-        console.log("Error updating the item", error);
+      .catch((err) => {
+        console.log("Error updating the item", err);
         alert("Unable to update item!");
+      });
+  };
+
+  //POST request function add a new item to the gallery
+  const addGalleryItem = (newItem) => {
+    console.log(newItem);
+    axios
+      .post("gallery", newItem)
+      .then((res) => {
+        console.log("Item added successfully", newItem);
+        getGallery();
+      })
+      .catch((err) => {
+        console.log("Error adding item to the database", err);
       });
   };
 
