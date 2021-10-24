@@ -9,6 +9,7 @@ export default function GalleryItem({ item, updateGalleryItem }) {
 
   // click handler for image, description, and like button
   const clickHandler = (e) => {
+    // console.log(e.target.tagName);
     // change functionality based on what was clicked
     switch (e.target.tagName) {
       case "IMG":

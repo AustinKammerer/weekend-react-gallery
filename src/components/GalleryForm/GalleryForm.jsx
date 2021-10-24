@@ -6,7 +6,7 @@ export default function GalleryForm({ addGalleryItem }) {
   // each input will change its respective property of newItem
   const [newItem, setNewItem] = useState({ path: "", description: "" });
   const handleChange = (e) => {
-    console.dir(e.target);
+    // console.dir(e.target);
     // unpack the name and value properties from the input that is being changed
     // assign them to variables
     const { name, value } = e.target;
@@ -28,7 +28,7 @@ export default function GalleryForm({ addGalleryItem }) {
     }
   };
 
-  console.log(newItem);
+  //   console.log(newItem);
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="path">Image URL:</label>
