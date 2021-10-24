@@ -19,8 +19,14 @@
   margin-bottom: 0.5rem;
 }
 
+.delete {
+  margin-bottom: 0.5rem;
+  text-align: right;
+}
+
 .description:hover,
 .image:hover,
-.likeBtn:hover {
+.likeBtn:hover,
+.deleteBtn:hover {
   cursor: pointer;
 }
