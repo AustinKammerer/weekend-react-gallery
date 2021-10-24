@@ -7,20 +7,26 @@ const pool = require("../modules/pool.js");
 
 // PUT Route
 router.put("/like/:id", (req, res) => {
-  console.log(req.params);
-  const galleryId = req.params.id;
-  for (const galleryItem of galleryItems) {
-    if (galleryItem.id == galleryId) {
-      galleryItem.likes += 1;
-    }
-  }
-  res.sendStatus(200);
+  // log the client request's full url
+  console.log(`PUT request at ${req.baseUrl}${req.url}`);
+  // grab the target id from the url param
+  const id = req.params.id;
+  const queryText = `UPDATE "gallery" SET "likes" = "likes" + 1 WHERE "id" = $1;`;
+  // user input id will be sanitized
+  pool
+    .query(queryText, [id])
+    .then((response) => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log(`Error making query ${queryText} (id:${id}):`, err);
+      res.sendStatus(500);
+    });
 }); // END PUT Route
 
 // GET Route
 router.get("/", (req, res) => {
-  // log the request's full url
-  console.log(`GET request at ${req.baseUrl}${req.url}`);
+  // select all columns of all rows from the table and order by id
   const queryText = `SELECT * FROM "gallery" ORDER BY "id"`;
   pool
     .query(queryText)
