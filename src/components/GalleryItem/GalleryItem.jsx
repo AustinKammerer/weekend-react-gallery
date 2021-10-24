@@ -1,15 +1,19 @@
 import { useState } from "react";
 import "./GalleryItem.css";
 
-export default function GalleryItem({ item, updateGalleryItem }) {
+export default function GalleryItem({
+  item,
+  updateGalleryItem,
+  deleteGalleryItem,
+}) {
   // variable for displaying image versus description
   const [imgDisplay, setImgDisplay] = useState(true);
   // variable for setting the description element's dimensions to those of its image so card size doesnt change
   const [descriptionDims, setDescriptionDims] = useState([]);
 
-  // click handler for image, description, and like button
+  // click handler for image, description, and like/delete buttons
   const clickHandler = (e) => {
-    // console.log(e.target.tagName);
+    console.log(e.target.className);
     // change functionality based on what was clicked
     switch (e.target.tagName) {
       case "IMG":
@@ -22,8 +26,13 @@ export default function GalleryItem({ item, updateGalleryItem }) {
         setImgDisplay(!imgDisplay);
         break;
       case "BUTTON":
-        // run the PUT request function in app to update likes
-        updateGalleryItem(item);
+        if (e.target.className === "likeBtn") {
+          // run the PUT request function in app to update likes
+          updateGalleryItem(item);
+        } else if (e.target.className === "deleteBtn") {
+          // run the DELETE request function in app to delete the image
+          deleteGalleryItem(item);
+        }
         break;
       case "P":
         // flip the truthyness of imgDisplay back to true so the image displays again
@@ -34,6 +43,11 @@ export default function GalleryItem({ item, updateGalleryItem }) {
 
   return (
     <div className="card">
+      <div className="delete">
+        <button onClick={clickHandler} className="deleteBtn">
+          X
+        </button>
+      </div>
       <div className="cardMain">
         {/* if imgDisplay is true (default) the image is displayed, 
         if it is true (when the image is clicked) the description will display instead */}

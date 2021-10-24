@@ -1,6 +1,10 @@
 import GalleryItem from "../GalleryItem/GalleryItem.jsx";
 
-export default function GalleryList({ itemList, updateGalleryItem }) {
+export default function GalleryList({
+  itemList,
+  updateGalleryItem,
+  deleteGalleryItem,
+}) {
   // loop over the itemList to generate a component for each item
   // the map callback's 'item' argument is passed to the component as a prop
   return (
@@ -8,8 +12,9 @@ export default function GalleryList({ itemList, updateGalleryItem }) {
       {itemList.map((item) => (
         <GalleryItem
           key={item.id}
-          updateGalleryItem={updateGalleryItem}
           item={item}
+          updateGalleryItem={updateGalleryItem}
+          deleteGalleryItem={deleteGalleryItem}
         />
       ))}
     </div>
