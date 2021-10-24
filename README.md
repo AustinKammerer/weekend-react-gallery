@@ -14,6 +14,11 @@ The front end is built with React components (`App`, `GalleryList`, `GalleryForm
 
 The back end is built with `Node.js` and `Express.js`. Queries to the `PostgreSQL` database are made with `pg`.
 
+TODO:
+
+- Add styling with Material-UI [https://material-ui.com/](https://material-ui.com/)
+- Implement [uppy](https://uppy.io/) for image upload
+
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/en/)
