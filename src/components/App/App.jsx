@@ -61,7 +61,7 @@ function App() {
   const deleteGalleryItem = (itemToDelete) => {
     const id = itemToDelete.id;
     axios
-      .delete(`/gallery/delete/${id})`)
+      .delete(`/gallery/delete/${id}`)
       .then((res) => {
         console.log("Item deleted successfully");
         getGallery();
