@@ -3,6 +3,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import GalleryList from "../GalleryList/GalleryList.jsx";
+import GalleryForm from "../GalleryForm/GalleryForm.jsx";
 
 function App() {
   // state variables
@@ -17,12 +18,12 @@ function App() {
   const getGallery = () => {
     axios
       .get("/gallery")
-      .then((response) => {
-        console.log(response.data);
-        setItemList(response.data);
+      .then((res) => {
+        console.log(res.data);
+        setItemList(res.data);
       })
-      .catch((error) => {
-        console.log("Error getting the gallery", error);
+      .catch((err) => {
+        console.log("Error getting the gallery", err);
       });
   };
 
@@ -31,23 +32,39 @@ function App() {
     const id = item.id;
     axios
       .put(`gallery/like/${id}`)
-      .then((response) => {
+      .then((res) => {
         console.log("Item update success");
         getGallery();
       })
-      .catch((error) => {
-        console.log("Error updating the item", error);
+      .catch((err) => {
+        console.log("Error updating the item", err);
         alert("Unable to update item!");
+      });
+  };
+
+  //POST request function add a new item to the gallery
+  const addGalleryItem = (newItem) => {
+    console.log(newItem);
+    axios
+      .post("gallery", newItem)
+      .then((res) => {
+        console.log("Item added successfully", newItem);
+        getGallery();
+      })
+      .catch((err) => {
+        console.log("Error adding item to the database", err);
       });
   };
 
   // itemList is passed to GalleryList as a prop so it may be mapped
   // updateGalleryItem is passed as a prop so it may be then passed to GalleryItem for the 'Like' button click handler
+  // addGalleryItem is passed as a prop to GalleryForm
   return (
     <div className="App">
       <header className="App-header">
-        <h1 className="App-title">Gallery of My Life</h1>
+        <h1 className="App-title">Image Gallery</h1>
       </header>
+      <GalleryForm addGalleryItem={addGalleryItem} />
       <GalleryList itemList={itemList} updateGalleryItem={updateGalleryItem} />
     </div>
   );
