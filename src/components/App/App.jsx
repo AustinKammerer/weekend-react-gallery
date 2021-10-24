@@ -58,10 +58,11 @@ function App() {
 
   // itemList is passed to GalleryList as a prop so it may be mapped
   // updateGalleryItem is passed as a prop so it may be then passed to GalleryItem for the 'Like' button click handler
+  // addGalleryItem is passed as a prop to GalleryForm
   return (
     <div className="App">
       <header className="App-header">
-        <h1 className="App-title">Gallery of My Life</h1>
+        <h1 className="App-title">Image Gallery</h1>
       </header>
       <GalleryForm addGalleryItem={addGalleryItem} />
       <GalleryList itemList={itemList} updateGalleryItem={updateGalleryItem} />

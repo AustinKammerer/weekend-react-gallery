@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./GalleryForm.css";
 
 export default function GalleryForm({ addGalleryItem }) {
   // declare variable newItem and a way to set it
@@ -17,10 +18,12 @@ export default function GalleryForm({ addGalleryItem }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // only run addGalleryItem if path input is not empty
     if (newItem.path === "") {
       alert("Please enter a URL");
     } else {
       addGalleryItem(newItem);
+      // reset the input fields
       setNewItem({ path: "", description: "" });
     }
   };
@@ -28,19 +31,23 @@ export default function GalleryForm({ addGalleryItem }) {
   console.log(newItem);
   return (
     <form onSubmit={handleSubmit}>
+      <label htmlFor="path">Image URL:</label>
       <input
         name="path"
         value={newItem.path}
         type="text"
         onChange={handleChange}
+        className="text-input"
       />
+      <label htmlFor="description">Image Description:</label>
       <input
         name="description"
         value={newItem.description}
         type="text"
         onChange={handleChange}
+        className="text-input"
       />
-      <input type="submit" value="Submit" />
+      <input type="submit" value="Add Image" />
     </form>
   );
 }
