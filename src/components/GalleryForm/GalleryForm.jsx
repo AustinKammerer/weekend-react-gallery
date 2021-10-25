@@ -47,16 +47,8 @@ export default function GalleryForm({ addGalleryItem }) {
           onSubmit={handleSubmit}
           noValidate
           autoComplete="off"
-          sx={{ mt: 1 }}
+          //   sx={{ mt: 0 }}
         >
-          {/* <label htmlFor="path">Image URL:</label>
-      <input
-        name="path"
-        value={newItem.path}
-        type="text"
-        onChange={handleChange}
-        className="text-input"
-      /> */}
           <TextField
             value={newItem.path}
             onChange={handleChange}
@@ -67,16 +59,8 @@ export default function GalleryForm({ addGalleryItem }) {
             label="Image URL"
             name="path"
             autoFocus
+            size="small"
           />
-
-          {/* <label htmlFor="description">Image Description:</label>
-      <input
-        name="description"
-        value={newItem.description}
-        type="text"
-        onChange={handleChange}
-        className="text-input"
-      /> */}
           <TextField
             value={newItem.description}
             onChange={handleChange}
@@ -86,13 +70,13 @@ export default function GalleryForm({ addGalleryItem }) {
             label="Description"
             name="description"
             autoFocus
+            size="small"
           />
-          {/* <input type="submit" value="Add Image" /> */}
           <Button
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ mt: 1, mb: 2 }}
           >
             Add Image
           </Button>

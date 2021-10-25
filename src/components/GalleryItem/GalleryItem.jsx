@@ -5,6 +5,8 @@ import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardActionArea from "@mui/material/CardActionArea";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
 
 export default function GalleryItem({
   item,
@@ -31,10 +33,10 @@ export default function GalleryItem({
         setImgDisplay(!imgDisplay);
         break;
       case "BUTTON":
-        if (e.target.className === "likeBtn") {
+        if (e.target.innerText === "LIKE") {
           // run the PUT request function in app to update likes
           updateGalleryItem(item);
-        } else if (e.target.className === "deleteBtn") {
+        } else if (e.target.innerText === "REMOVE") {
           // run the DELETE request function in app to delete the image
           deleteGalleryItem(item);
         }
@@ -47,40 +49,46 @@ export default function GalleryItem({
   };
 
   return (
-    <Card sx={{ maxWidth: 345, m: 5 }}>
-      {/* <div className="delete"></div> */}
+    <Card sx={{ maxWidth: 500, m: 5 }}>
       <CardActionArea>
-        <div className="cardMain">
-          {/* if imgDisplay is true (default) the image is displayed, 
-        if it is true (when the image is clicked) the description will display instead */}
-          {imgDisplay ? (
-            <img className="image " src={item.path} onClick={clickHandler} />
-          ) : (
-            <p
-              className="description"
-              onClick={clickHandler}
-              style={{ width: descriptionDims[0], height: descriptionDims[1] }}
-            >
-              {item.description}
-            </p>
-          )}
-        </div>
+        {imgDisplay ? (
+          <CardMedia
+            component="img"
+            height="200"
+            image={item.path}
+            onClick={clickHandler}
+            className="image"
+          />
+        ) : (
+          <Typography
+            variant="body2"
+            onClick={clickHandler}
+            className="description"
+            sx={{
+              boxSizing: "border-box",
+              width: descriptionDims[0],
+              height: descriptionDims[1],
+              display: "flex",
+              alignItems: "center",
+              p: 3,
+            }}
+          >
+            {item.description}
+          </Typography>
+        )}
       </CardActionArea>
-      <div className="likes">
-        <p>
-          {item.likes}{" "}
-          {item.likes === 1 ? "person likes this" : "people like this"}
-        </p>
-      </div>
+      <Typography variant="subtitle1" textAlign={"center"} mt={2}>
+        {item.likes}{" "}
+        {item.likes === 1 ? "person likes this" : "people like this"}
+      </Typography>
       <CardActions
         sx={{
           display: "grid",
-          gridTemplateColumns: "1fr auto 1fr",
+          gridTemplateColumns: "2fr 1fr 2fr",
           gridTemplateRows: "auto",
           gridTemplateAreas: `"like . delete"`,
         }}
       >
-        {/* <Box> */}
         <Button
           className="likeBtn"
           onClick={clickHandler}
@@ -93,9 +101,8 @@ export default function GalleryItem({
           className="deleteBtn"
           sx={{ gridArea: "delete" }}
         >
-          X
+          Remove
         </Button>
-        {/* </Box> */}
       </CardActions>
     </Card>
   );

@@ -1,32 +1,32 @@
-.card {
+/* .card {
   display: inline-block;
   padding: 1rem;
   border: 1px solid black;
   border-radius: 10px;
   overflow-wrap: break-word;
   margin: 1rem;
-}
+} */
 
 .description {
   margin: 0;
 }
 .image {
   display: block;
-  height: 150px;
+  /* height: 150px; */
 }
 
 .likes p {
   margin-bottom: 0.5rem;
 }
 
-.delete {
+/* .delete {
   margin-bottom: 0.5rem;
   text-align: right;
-}
+} */
 
-.description:hover,
+/* .description:hover,
 .image:hover,
 .likeBtn:hover,
 .deleteBtn:hover {
   cursor: pointer;
-}
+} */
