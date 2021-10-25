@@ -1,6 +1,12 @@
-.App {
+/* * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+} */
+
+/* .App {
   text-align: center;
-}
+} */
 
 .App-header {
   background-color: #222;
@@ -12,4 +18,3 @@
 .App-title {
   font-size: 1.5em;
 }
-

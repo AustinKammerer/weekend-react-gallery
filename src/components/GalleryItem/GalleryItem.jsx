@@ -1,5 +1,10 @@
 import { useState } from "react";
 import "./GalleryItem.css";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardActionArea from "@mui/material/CardActionArea";
 
 export default function GalleryItem({
   item,
@@ -13,7 +18,7 @@ export default function GalleryItem({
 
   // click handler for image, description, and like/delete buttons
   const clickHandler = (e) => {
-    console.log(e.target.className);
+    console.dir(e.target);
     // change functionality based on what was clicked
     switch (e.target.tagName) {
       case "IMG":
@@ -42,36 +47,56 @@ export default function GalleryItem({
   };
 
   return (
-    <div className="card">
-      <div className="delete">
-        <button onClick={clickHandler} className="deleteBtn">
-          X
-        </button>
-      </div>
-      <div className="cardMain">
-        {/* if imgDisplay is true (default) the image is displayed, 
+    <Card sx={{ maxWidth: 345, m: 5 }}>
+      {/* <div className="delete"></div> */}
+      <CardActionArea>
+        <div className="cardMain">
+          {/* if imgDisplay is true (default) the image is displayed, 
         if it is true (when the image is clicked) the description will display instead */}
-        {imgDisplay ? (
-          <img className="image " src={item.path} onClick={clickHandler} />
-        ) : (
-          <p
-            className="description"
-            onClick={clickHandler}
-            style={{ width: descriptionDims[0], height: descriptionDims[1] }}
-          >
-            {item.description}
-          </p>
-        )}
-      </div>
+          {imgDisplay ? (
+            <img className="image " src={item.path} onClick={clickHandler} />
+          ) : (
+            <p
+              className="description"
+              onClick={clickHandler}
+              style={{ width: descriptionDims[0], height: descriptionDims[1] }}
+            >
+              {item.description}
+            </p>
+          )}
+        </div>
+      </CardActionArea>
       <div className="likes">
         <p>
           {item.likes}{" "}
           {item.likes === 1 ? "person likes this" : "people like this"}
         </p>
-        <button className="likeBtn" onClick={clickHandler}>
-          Like
-        </button>
       </div>
-    </div>
+      <CardActions
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "1fr auto 1fr",
+          gridTemplateRows: "auto",
+          gridTemplateAreas: `"like . delete"`,
+        }}
+      >
+        {/* <Box> */}
+        <Button
+          className="likeBtn"
+          onClick={clickHandler}
+          sx={{ gridArea: "like" }}
+        >
+          Like
+        </Button>
+        <Button
+          onClick={clickHandler}
+          className="deleteBtn"
+          sx={{ gridArea: "delete" }}
+        >
+          X
+        </Button>
+        {/* </Box> */}
+      </CardActions>
+    </Card>
   );
 }
