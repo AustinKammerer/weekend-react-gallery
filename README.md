@@ -16,7 +16,6 @@ The back end is built with `Node.js` and `Express.js`. Queries to the `PostgreSQ
 
 TODO:
 
-- Add styling with Material-UI [https://material-ui.com/](https://material-ui.com/)
 - Implement [uppy](https://uppy.io/) for image upload
 
 ### Prerequisites
@@ -46,6 +45,7 @@ TODO:
 - Node.js
 - Express.js
 - PostgreSQL
+- Material UI v5
 
 ## Acknowledgement
 

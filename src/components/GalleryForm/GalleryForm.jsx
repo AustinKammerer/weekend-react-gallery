@@ -1,5 +1,8 @@
 import { useState } from "react";
-import "./GalleryForm.css";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Paper from "@mui/material/Paper";
 
 export default function GalleryForm({ addGalleryItem }) {
   // declare variable newItem and a way to set it
@@ -30,24 +33,53 @@ export default function GalleryForm({ addGalleryItem }) {
 
   //   console.log(newItem);
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="path">Image URL:</label>
-      <input
-        name="path"
-        value={newItem.path}
-        type="text"
-        onChange={handleChange}
-        className="text-input"
-      />
-      <label htmlFor="description">Image Description:</label>
-      <input
-        name="description"
-        value={newItem.description}
-        type="text"
-        onChange={handleChange}
-        className="text-input"
-      />
-      <input type="submit" value="Add Image" />
-    </form>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <Paper sx={{ px: 2 }}>
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          noValidate
+          autoComplete="off"
+        >
+          <TextField
+            value={newItem.path}
+            onChange={handleChange}
+            margin="normal"
+            required
+            fullWidth
+            id="path"
+            label="Image URL"
+            name="path"
+            autoFocus
+            size="small"
+          />
+          <TextField
+            value={newItem.description}
+            onChange={handleChange}
+            margin="normal"
+            fullWidth
+            id="description"
+            label="Description"
+            name="description"
+            autoFocus
+            size="small"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 1, mb: 2 }}
+          >
+            Add Image
+          </Button>
+        </Box>
+      </Paper>
+    </Box>
   );
 }
