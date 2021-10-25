@@ -1,6 +1,4 @@
 import { useState } from "react";
-import "./GalleryItem.css";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -20,7 +18,7 @@ export default function GalleryItem({
 
   // click handler for image, description, and like/delete buttons
   const clickHandler = (e) => {
-    console.dir(e.target);
+    // console.dir(e.target);
     // change functionality based on what was clicked
     switch (e.target.tagName) {
       case "IMG":
@@ -49,7 +47,7 @@ export default function GalleryItem({
   };
 
   return (
-    <Card sx={{ maxWidth: 500, m: 5 }}>
+    <Card sx={{ maxWidth: 500, m: 2 }}>
       <CardActionArea>
         {imgDisplay ? (
           <CardMedia

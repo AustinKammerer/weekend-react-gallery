@@ -9,7 +9,7 @@ export default function GalleryList({
   // loop over the itemList to generate a component for each item
   // the map callback's 'item' argument is passed to the component as a prop
   return (
-    <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+    <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
       {itemList.map((item) => (
         <GalleryItem
           key={item.id}

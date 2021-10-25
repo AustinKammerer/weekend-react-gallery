@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./GalleryForm.css";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -47,7 +46,6 @@ export default function GalleryForm({ addGalleryItem }) {
           onSubmit={handleSubmit}
           noValidate
           autoComplete="off"
-          //   sx={{ mt: 0 }}
         >
           <TextField
             value={newItem.path}
