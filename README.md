@@ -14,9 +14,16 @@ The front end is built with React components (`App`, `GalleryList`, `GalleryForm
 
 The back end is built with `Node.js` and `Express.js`. Queries to the `PostgreSQL` database are made with `pg`.
 
+The deployed version of the app may be found [here](https://calm-springs-77191.herokuapp.com/).
+
+## Screenshots
+
+![screenshots/screen1.png](screenshots/screen1.png)
+![screenshots/screen2.png](screenshots/screen2.png)
+
 TODO:
 
-- Implement [uppy](https://uppy.io/) for image upload
+- Implement image upload
 
 ### Prerequisites
 
